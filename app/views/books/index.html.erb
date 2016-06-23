@@ -77,6 +77,16 @@
 
       </ul>
     </div>
-
+    <div class="col-sm-4">
+      <h2>Genres</h2>
+      <ul class="list-unstyled">
+        <% @genres.each do |genre| %>
+          <li>
+            <%= link_to genre.name, books_path(filter: genre.name), class: 'label label-primary' %>
+            <%# change (filter: genre.id) to (filter: genre.name) if using name so that you don't expose the id to users %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

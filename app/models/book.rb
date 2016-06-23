@@ -1,10 +1,21 @@
 class Book < ActiveRecord::Base
 
+  has_many :book_genres
+  has_many :genres, through: :book_genres
+
   scope :finished, ->{ where.not(finished_on: nil) }
   scope :recent, ->{ where('finished_on > ?', 2.days.ago) }
   scope :search, ->(keyword){ where('keywords LIKE ?', "%#{keyword.downcase}%") if keyword.present? }
   # anything in the keywords attribute that matches the word in keyword in lowercase
   # wildcards is for anything that comes before or anything that comes after the keyword
+
+  # this is filtering by genre id, and by writing sql
+  # scope :filter_book, ->(genre_id){ joins(:book_genres).where('book_genres.genre_id = ?', genre_id) if genre_id.present? }
+  # another way:
+  # scope :filter_book, ->(genre_id){ joins(:book_genres).where(book_genres: {genre_id: genre_id}) if genre_id.present? }
+
+  # this is filtering by genre name
+  scope :filter_book, ->(name){ joins(:genres).where('genres.name = ?', name) if name.present? }
 
   before_save :set_keywords # this will run the callbacks before each save
 
