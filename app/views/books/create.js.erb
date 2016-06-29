@@ -1,0 +1,31 @@
+$('.book-list').prepend('<%=j render @book %>');
+// prepend is adding to the beginning of the page
+// find ul tag with id : 'book-list' that lists all books in index.html.erb.
+// we want @book to be prepended (added on the top) of the tag id 'book-list'
+// we already have the partial book, so re-use it
+// we need to escape the page otherwise the index page will mess up the javascript.
+// j is the shortcut of escape the javascript. HAH!!!
+// without j the new books will appear at the bottom according to the order from the database.
+
+// we want the book form to disappear after we created a new book.
+// the form has id='new_book', you can find it by selecting Inspect Element in Chrome Dev console (not in Atom)
+// <form class="horizontal-form" id="new_book" action="/books" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+//   <legend>New Book</legend>
+//   ...
+// </form>
+var form = $('#new_book') // new_book is the name of the form class inside the div named: 'book-form'
+//within the form we have to find the inputs and remove the form elements one by one.
+//there is no quick way to remove a form because each element behaves differently
+//that's why you need to remove each of the form element by using form.find
+form.find('input[type=text]').val('')
+form.find('input[type=radio]').removeAttr('checked')
+form.find('option').removeAttr('selected')
+$('.book-form').toggle() // book-form is the name of the div tag that wraps around the form with id 'new_book'
+
+// Have a look at screenshot photos in this project's folder
+
+
+
+// DO NOT USE
+//$('#new_book').trigger('reset');
+//$('.book-form').slideUp();

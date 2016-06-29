@@ -1,4 +1,8 @@
 <!-- <div class="container"> -->
+  <%# we don't need to set the @book variable coz rails is alredy doing it for us
+  It infers to the local name based on the partial name: book (singular)
+  In terminal under rails s tab, you will see:
+  Rendered books/_book.html.erb (23.9ms) %>
   <li class="row rating-<%= book.rating %>">
     <div class="col-sm-2">
       <a href="#" target="_blank">
