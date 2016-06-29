@@ -17,9 +17,9 @@ var form = $('#new_book') // new_book is the name of the form class inside the d
 //within the form we have to find the inputs and remove the form elements one by one.
 //there is no quick way to remove a form because each element behaves differently
 //that's why you need to remove each of the form element by using form.find
-form.find('input[type=text]').val('')
-form.find('input[type=radio]').removeAttr('checked')
-form.find('option').removeAttr('selected')
+form.find('input[type=text]').val('')// we are clearing up the value of the text
+form.find('input[type=radio]').removeAttr('checked')// clearing up the radio for ratings, remove the attribute 'checked'
+form.find('option').removeAttr('selected')//find the option element of the genres and remove the selected option
 $('.book-form').toggle() // book-form is the name of the div tag that wraps around the form with id 'new_book'
 
 // Have a look at screenshot photos in this project's folder
